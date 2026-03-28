@@ -1,66 +1,35 @@
-## Foundry
+# Vega Voting Homework
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Overview
+This project implements a voting protocol based on a specialized ERC20 token VV.
 
-Foundry consists of:
+Users can:
+- receive VV tokens
+- stake VV for 1 to 4 weeks
+- gain voting power based on the formula:
+  VP_U(t) = sum_i (T_expiry - t)^2 * A_i
+- vote yes/no in active votings
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Admin can:
+- create votings
+- pause/unpause the protocol
+- mint VV to users
 
-## Documentation
+When a vote is finalized, an ERC721 NFT is minted to store voting results.
 
-https://book.getfoundry.sh/
+## Contracts
+- VVToken (ERC20)
+- VotingResultNFT (ERC721)
+- VegaVoting
 
-## Usage
+## Tech stack
+- Solidity 0.8.24
+- Foundry
+- OpenZeppelin v5
+- Sepolia
 
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+## Commands
+```bash
+forge build
+forge test -vv
 ```
